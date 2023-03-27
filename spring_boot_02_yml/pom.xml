@@ -24,6 +24,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--配置处理器，开启yaml提示-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -43,6 +44,7 @@
         </dependency>
     </dependencies>
 
+    <!--打包时排除配置处理器-->
     <build>
         <plugins>
             <plugin>
