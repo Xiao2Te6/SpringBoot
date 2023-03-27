@@ -1,0 +1,35 @@
+person:
+#    userName: 小王
+# 自动匹配驼峰命名
+  user-name: '小王'
+  boss: true
+    birth: 2000/7/1
+    age: 22
+    pet:
+      name: 小黑
+      weight: 55.2
+#    行内写法
+#    interests: [唱歌,跳舞]
+    interests:
+      - 唱歌
+      - 跳舞
+    animals: [小黑,小花]
+#    行内写法
+#    score: {english:88,math:82}
+    score:
+      english: 88
+      math: 82
+    salary: [1999,25000]
+#    行内写法
+#    allPets: {health:[{name: 小黑,weight: 33.2},{name: 小宝,weight: 44}],sick:[{name: 小白,weight: 13.2},{name: 小苟,weight: 14}]}
+    allPets:
+      health:
+        - name: 小黑
+          weight: 33.2
+        - name: 小宝
+          weight: 44
+      sick:
+        - name: 小白
+          weight: 13.2
+        - name: 小苟
+          weight: 14
