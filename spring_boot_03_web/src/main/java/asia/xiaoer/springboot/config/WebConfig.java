@@ -1,7 +1,12 @@
 package asia.xiaoer.springboot.config;
 
+import asia.xiaoer.springboot.domain.Pet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -26,10 +31,12 @@ public class WebConfig{
     // }
 
     /**
-     * 使用@bean开启矩阵变量
+     * webMvc配置
      */
+    @Bean
     public WebMvcConfigurer webMvcConfigurer(){
         return new WebMvcConfigurer(){
+            //使用@bean开启矩阵变量（另一种方法是继承WebMvcConfigurerComposite重写configurePathMatch）
             @Override
             public void configurePathMatch(PathMatchConfigurer configurer) {
                 UrlPathHelper urlPathHelper = new UrlPathHelper();
@@ -37,6 +44,28 @@ public class WebConfig{
                 urlPathHelper.setRemoveSemicolonContent(false);
                 configurer.setUrlPathHelper(urlPathHelper);
             }
+
+             //添加使用自定义Converter 将'huahua，2'格式字符串转换为pet实体类
+            @Override
+            public void addFormatters(FormatterRegistry registry) {
+                //强转原因：必须规定Converter接口的两个泛型类型
+                registry.addConverter((Converter<String, Pet>)(source) ->{
+                    if (!source.isEmpty()) {
+                        String[] split = source.split(",");
+                        return new Pet(split[0],Integer.parseInt(split[1]));
+                    }
+                    return null;
+                });
+            }
         };
+
+
+
     }
+
+
+
+
+
+
 }
