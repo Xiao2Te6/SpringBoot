@@ -2,15 +2,20 @@ spring:
   mvc:
     hiddenmethod:
       filter:
-        enabled: true
+        enabled: true  #开启页面表单的Rest功能
+
+    contentnegotiation:
+      favor-parameter: true    #开启使用参数的内容协商功能
+
+
+#  contentnegotiation:
+#    favor-parameter: true
 
 #    修改静态文件映射路径  默认为 /**
 #    static-path-pattern: /static/**
 
     web:
       resources:
-
-
 #      修改默认静态资源存放文件夹 默认为/static or /public or /resources or /META-INF/resources
 #      static-locations: classpath:/haha/
 #     禁用静态文件
